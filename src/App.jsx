@@ -1,35 +1,43 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+function loginForm() {
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [token, setToken] = useState(localStorage.getItem('token'))
+
+async function submitForm(e){
+  e.preventDefault();
+  if(password.length <8){
+    setErrorMessage("password is too short");
+  }else{
+    setEmail('');
+    setPassword('');
+  }
+  console.log(username);
+}
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+     //onSubmit replaces eventlistners
+     //input generates a box where username info is typed 
+     <div>
+      <form onSumbit={submitForm}>
+        <label>
+          Username: 
+          <input
+          value={username}
+          onChange={ (e) => {setUsername(e.target.value)}
+
+          }
+          />
+          </label>
+          <button type="submit">Submit</button>
+          </form>
+          </div>
+  
   )
 }
 
-export default App
+export default loginForm
