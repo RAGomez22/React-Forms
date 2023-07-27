@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './App.css'
 
 function loginForm() {
-  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -16,7 +15,7 @@ async function submitForm(e){
     setEmail('');
     setPassword('');
   }
-  console.log(username);
+  console.log(email);
 }
 
   return (
@@ -24,19 +23,34 @@ async function submitForm(e){
      //input generates a box where username info is typed 
      <div>
       <form onSumbit={submitForm}>
-        <label>
-          Username: 
-          <input
-          value={username}
-          onChange={ (e) => {setUsername(e.target.value)}
+        <h1>Sign In </h1>
+        <label htmlFor="email"> Email address </label>
+        <input
+          value={email}
+          type="email"
+          id="email"
+          onChange={ (e) => {
+            setErrorMessage('');
+            setEmail(e.target.value)
+          }}
+        />
+        
 
-          }
+        <label> Password </label> 
+          <input
+            value={password}
+            type="password"
+            id="password"
+            onChange={ (e) => {
+              setErrorMessage('');
+              setPassword(e.target.value)
+            }} 
+          //labels can have nested inputs or be outside of input 
           />
-          </label>
-          <button type="submit">Submit</button>
-          </form>
-          </div>
-  
+        
+        <button type="submit">Login</button>
+      </form>
+    </div>
   )
 }
 
