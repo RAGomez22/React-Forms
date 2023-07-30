@@ -1,5 +1,18 @@
-import { useState } from 'react'
+import React, { useState } from "react";
 import './App.css'
+import Authenticate from "./authenticate";
+import SignUpForm from "./signupform";
+
+function App() {
+  const [token, setToken] = useState(null);
+
+  return (
+    <>
+      <SignUpForm token={token} setToken={setToken} />
+      <Authenticate token={token} setToken={setToken} />
+    </>
+  );
+}
 
 function loginForm() {
   const [email, setEmail] = useState('')
@@ -54,4 +67,4 @@ async function submitForm(e){
   )
 }
 
-export default loginForm
+export default SignUpForm;
